@@ -1,0 +1,31 @@
+body {
+    margin: 0px;
+}
+
+.bg-img {
+    margin: 0px;
+    background-image: url(../../assets/images/cost_finder.jpg);
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.col-sm a {
+    text-decoration: none;
+    color: #ff8c00;
+    font-weight: 600;
+}
+
+.col-sm a:hover {
+    cursor: default;
+}
+
+.btn:focus,
+.btn:active,
+.form-control:active,
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+    cursor: default;
+    border-color: black;
+}

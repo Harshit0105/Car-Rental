@@ -1,0 +1,86 @@
+<div class="content" style="margin-left: 0px;">
+    <img src="../../assets/images/admin.jpg">
+    <div class="color">
+        <div id="car-card" class="card text-center" style="margin:90px auto 5px;width:50rem;">
+            <div class="card-header" style="background-color:#ff8c00;color:white;margin:-2px">
+                <div class="card-title">
+                    <h2>Add New Car</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <div class="row" style="margin: 10px;">
+                        <div class="col-sm-4">
+                            Car Name:
+                        </div>
+                        <div class="col-sm">
+                            <input class="form-control" type="text" id="cname" name="cname" required>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 10px;">
+                        <div class="col-sm-4">
+                            Car Type:
+                        </div>
+                        <div class="col-sm">
+                            <select name="car_type" id="car_type" class="form-control">
+                                <option value="ALL" selected>Select Type</option>
+                                <option value="EC">Economy Cars</option>
+                                <option value="CC">Compact Car</option>
+                                <option value="MS">Mid Size Car</option>
+                                <option value="FS">Full Size Car</option>
+                                <option value="PC">Premium Car</option>
+                                <option value="LC">Luxury Car</option>
+                                <option value="SC">SUVs Car</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 10px;">
+                        <div class="col-sm-4">
+                            Car No:
+                        </div>
+                        <div class="col-sm">
+                            <input class="form-control" type="text" id="cno" name="cno" required>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 10px;">
+                        <div class="col-sm-4">
+                            Price (/km):
+                        </div>
+                        <div class="col-sm">
+                            <input class="form-control" type="number" id="pkm" name="pkm" required>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 10px;">
+                        <div class="col-sm-4">
+                            Price (/day):
+                        </div>
+                        <div class="col-sm">
+                            <input class="form-control" type="number" id="pday" name="pday" required>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 10px;">
+                        <div class="col-sm-4">
+                            Discription:
+                        </div>
+                        <div class="col-sm">
+                            <textarea class="form-control" id="disc" name="disc" required></textarea>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 10px;">
+                        <div class="col-sm-4">
+                            Photos:
+                        </div>
+                        <div class="col-sm">
+                            <input class="form-control" type="file" multiple id="pics" name="pics" required>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 10px;">
+                        <div class="col-sm-12">
+                            <button class="btn btn-block" style="background-color: #FF4E14;color: white;">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

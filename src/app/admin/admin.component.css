@@ -1,0 +1,28 @@
+.content {
+    /* padding: 16px; */
+    margin-left: 200px;
+}
+
+.content img {
+    width: 100%;
+    height: 100vh;
+}
+
+.content .color {
+    height: 100vh;
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+}
+
+.content .color .msg {
+    font-family: "Oswald";
+    font-weight: bolder;
+    font-size: 5vw;
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    color: #f1f1f1;
+    animation: wheeleffect 1s ease-in-out;
+}

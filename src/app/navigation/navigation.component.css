@@ -1,0 +1,96 @@
+.topnav {
+    background-color: #ff8c00;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 100;
+}
+
+.logo {
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    margin-left: 20px;
+    /* margin-top: 15px; */
+    /* float: left; */
+}
+
+.topnav a {
+    font-family: "Oswald";
+    font-weight: 650;
+    word-spacing: 3;
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a.active {
+    color: black;
+    cursor: default;
+}
+
+.topnav a:hover:not(.active) {
+    cursor: default;
+    color: black;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+#myTopNav {
+    opacity: 0;
+}
+
+#myTopNav a {
+    font-family: "Oswald";
+    font-weight: 650;
+    word-spacing: 3;
+    text-align: left;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+    #myTopNav.responsive {
+        margin-left: -8px;
+        opacity: 1;
+        position: fixed;
+        z-index: 10000000;
+        width: 100%;
+        background-color: #333;
+        top: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+    #myTopNav.responsive a {
+        cursor: default;
+        border-radius: 5px;
+        margin: 1px;
+        height: auto;
+        padding: 10px;
+        width: 100%;
+        background-color: #ff8c00;
+        text-align: left;
+        color: wheat;
+        text-decoration: none;
+    }
+    #myTopNav.responsive a.active {
+        color: #333;
+    }
+}

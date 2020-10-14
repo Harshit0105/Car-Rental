@@ -1,0 +1,24 @@
+footer {
+    overflow: hidden;
+    /* padding: 1px; */
+    margin-top: auto;
+    width: 100vw;
+    height: 30vh;
+    background-color: rgb(39, 37, 37);
+}
+
+footer .LeftContent {
+    /* position: relative; */
+    color: white;
+    float: left;
+    font-size: 1.5vw;
+    padding-left: 50px;
+}
+
+footer .RightContent {
+    /* position: relative; */
+    color: white;
+    float: right;
+    font-size: 1.5vw;
+    padding-right: 50px;
+}

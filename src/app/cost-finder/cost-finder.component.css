@@ -1,0 +1,15 @@
+body {
+    margin: 0px;
+}
+
+.container .row {
+    margin: 10px;
+}
+
+.bg-img {
+    margin: 0px;
+    background-image: url(../../assets/images/cost_finder.jpg);
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}

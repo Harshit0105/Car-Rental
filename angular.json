@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "CarRental"
+    }
+  },
+  "defaultProject": "CarRental",
+  "cli": {
+    "analytics": false
+  }
 }
