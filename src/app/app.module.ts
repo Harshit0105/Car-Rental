@@ -1,9 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
+import { CarserviceService } from './carservice.service';
+import { UserService } from './user.service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -13,9 +17,11 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [CarserviceService, HttpClient, UserService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

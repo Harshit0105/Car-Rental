@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,39 +9,28 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
   @Input() public parentData
-  public isHome: boolean = false;
-  public isCars: boolean = false;
-  public isProfile: boolean = false;
-  public isLogin: boolean = false;
-  public isSignUp: boolean = false;
-  public isAdmin: boolean = false;
-  constructor() { }
 
+  constructor(private cookiservice: CookieService, private auth: AuthService) { }
+  isLoged: boolean;
   ngOnInit(): void {
-    // switch (this.parentData) {
-    //   case 'Home':
-    //     this.isHome = true
-    //     break
-    //   case 'Cars':
-    //     this.isCars = true
-    //     break
-    //   case 'Profile':
-    //     this.isProfile = true
-    //     break
-    //   case 'Login':
-    //     this.isLogin = true
-    //     break
-    //   case 'SignUp':
-    //     this.isSignUp = true
-    //     break
-    //   case 'Admin':
-    //     this.isAdmin = true
-    //     break
-    //   default: break
-    // }
+    this.auth.userObserver.subscribe((res) => {
+      if (res == null) {
+        this.isLoged = false;
+      }
+      else {
+        this.isLoged = true;
+      }
+    })
   }
   myFunction() {
     var x = document.getElementById("myTopNav");
     x.classList.toggle('responsive')
+  }
+
+  logout() {
+    this.cookiservice.set('email_id', null, -1);
+    this.cookiservice.set('role', null, -1);
+    this.auth.logout();
+    // location.reload();
   }
 }

@@ -12,10 +12,14 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminComponent } from './admin/admin.component';
+import { CarDetailComponent } from './car-detail/car-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'cars/:cate', component: CarsComponent },
+  { path: 'carDetails', component: CarsComponent },
+  { path: 'navigation', component: NavigationComponent },
+  { path: 'carDetails/:id', component: CarDetailComponent },
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
@@ -47,4 +51,5 @@ export const routingComponents = [
   SidenavComponent,
   PageNotFoundComponent,
   AdminComponent,
+  CarDetailComponent,
 ]

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ICar } from '../ICar';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { CarserviceService } from '../carservice.service';
+
 
 @Component({
   selector: 'app-cars',
@@ -7,9 +12,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarsComponent implements OnInit {
 
-  constructor() { }
+  cars: ICar[];
+  cate: String;
+  constructor(private carservice: CarserviceService, private Aroute: ActivatedRoute, private router: Router, private cookiservice: CookieService) { }
 
   ngOnInit(): void {
+    if (!this.cookiservice.check('email_id')) {
+      this.router.navigate(['/login']);
+    }
+    this.Aroute.params.subscribe((param) => this.callService(param.cate));
   }
-
+  callService(category: String) {
+    this.carservice.getCars(category).subscribe(rescar => {
+      this.cars = rescar;
+      this.cars = this.cars.sort((a, b) => (a.price > b.price ? -1 : 1))
+    })
+  }
+  carDetails(car: ICar) {
+    this.router.navigate(['/carDetails', car._id])
+  }
 }

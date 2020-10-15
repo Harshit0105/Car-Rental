@@ -4,41 +4,69 @@
             <h5 class="card-title">Login</h5>
         </div>
         <div class="card-body">
-            <!-- <form> -->
-            <div class="container">
-                <div class="row" style="margin: 10px;">
-                    <div class="col-sm-4">
-                        Username:
+            <form [formGroup]="myForm" (ngSubmit)="login()">
+                <div class="container">
+                    <div class="row" style="margin: 10px;">
+                        <div class="col-sm-4">
+                            Email Id:
+                        </div>
+                        <div class="col-sm">
+                            <input class="form-control" formControlName="email_id" [(ngModel)]="email_id" type="email" id="email_id" name="email_id" required>
+                        </div>
                     </div>
-                    <div class="col-sm">
-                        <input class="form-control" type="text" id="username" name="username" required>
+                    <div class="row" style="margin: 10px;" *ngIf="(myFormControl.email_id.touched || submitted) && (myFormControl.email_id.errors?.required || myFormControl.email_id.errors?.email)">
+                        <div class="col-sm-4">
+                            &nbsp;
+                        </div>
+                        <div class="col-sm">
+                            <span class="text-danger">
+                                Please provide valid email address!
+                            </span>
+                        </div>
                     </div>
-                </div>
-                <div class="row" style="margin: 10px;">
-                    <div class="col-sm-4">
-                        Password:
+                    <div class="row" style="margin: 10px;">
+                        <div class="col-sm-4">
+                            Password:
+                        </div>
+                        <div class="col-sm input-group mb-2">
+                            <input class="form-control" formControlName="password" [(ngModel)]="password" type="password" name="password" id="password" required>
+                            <div class="input-group-append input-group-text" style="background-color: #FF4E14;">
+                                <i id="togglePassword" class="fa fa-eye-slash fa-eye" aria-hidden="true" style="color:white"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm input-group mb-2">
-                        <input class="form-control" type="password" name="password" id="password" required>
-                        <div class="input-group-append input-group-text" style="background-color: #FF4E14;">
-                            <i id="togglePassword" class="fa fa-eye-slash fa-eye" aria-hidden="true" style="color:white"></i>
+                    <div class="row" style="margin: 10px;" *ngIf="(myFormControl.password.touched || submitted ) && myFormControl.password.errors?.required">
+                        <div class="col-sm-4">
+                            &nbsp;
+                        </div>
+                        <div class="col-sm">
+                            <span class="text-danger">
+                            Please provide password!
+                        </span>
+                        </div>
+                    </div>
+                    <div class="row align-items-end" style="margin: 10px;">
+                        <div class="col-sm">
+                            <a routerLink="/signup">Create new account.</a>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 10px;" *ngIf="!userMatch">
+                        <div class="col-sm-4">
+                            &nbsp;
+                        </div>
+                        <div class="col-sm">
+                            <span class="text-danger">
+                                Invalid Email or Password!
+                        </span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center" style="margin: 10px;">
+                        <div class="col-sm">
+                            <button type="submit" id="find_btn" class="btn btn-block" style="background-color:#FF4E14;color:white;">Login</button>
                         </div>
                     </div>
                 </div>
-                <div class="row align-items-end" style="margin: 10px;">
-                    <div class="col-sm">
-                        <a href="#">Forgot Password?</a>
-                    </div>
-                    <div class="col-sm">
-                        <a routerLink="/signup">Create new account.</a>
-                    </div>
-                </div>
-                <div class="row align-items-center" style="margin: 10px;">
-                    <div class="col-sm">
-                        <button type="button" id="find_btn" class="btn btn-block" style="background-color:#FF4E14;color:white;">Login</button>
-                    </div>
-                </div>
-            </div>
+            </form>
             <!-- </form> -->
         </div>
     </div>

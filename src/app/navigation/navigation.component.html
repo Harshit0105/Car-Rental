@@ -2,18 +2,18 @@
     <img class="logo" src="../../assets/images/logo.jpg">
     <a href="javascript:void(0);" class="icon" (click)="myFunction()">
         <i class="fa fa-bars"></i></a>
-    <a routerLink="/signup" routerLinkActive="active">SignUp</a>
-    <a routerLink="/login" routerLinkActive="active">Login</a>
-    <!-- <a routerLink="/admin" routerLinkActive="active">Admin</a> -->
+    <a *ngIf="isLoged" (click)="logout()">Logout</a>
+    <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoged">SignUp</a>
+    <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoged">Login</a>
     <a routerLink="/profile" routerLinkActive="active">Profile</a>
-    <a routerLink="/cars/ec" routerLinkActive="active">Cars</a>
+    <a routerLink="/cars/all" routerLinkActive="active">Cars</a>
     <a routerLink="/home" routerLinkActive="active">Home</a>
 </nav>
 <div id="myTopNav">
     <a routerLink="/home" routerLinkActive="active">Home</a>
-    <a routerLink="/cars" routerLinkActive="active">Cars</a>
+    <a routerLink="/cars/all" routerLinkActive="active">Cars</a>
     <a routerLink="/profile" routerLinkActive="active">Profile</a>
-    <!-- <a routerLink="/admin" routerLinkActive="active">Admin</a> -->
-    <a routerLink="/login" routerLinkActive="active">Login</a>
-    <a routerLink="/signup" routerLinkActive="active">SignUp</a>
+    <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoged">Login</a>
+    <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoged">SignUp</a>
+    <a *ngIf="isLoged" (click)="logout()">Logout</a>
 </div>
