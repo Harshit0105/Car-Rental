@@ -1,23 +1,148 @@
 <div class="bg-img">
-    <div class="card mb-3 justify-content-center" style="margin: 90px auto 5px;width: 50%;">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <img src="../../assets/images/profile.png" class="card-img" alt="Profile Pic" style="border-radius: 30px;">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Harshit Chudasama</h5>
-                    <p class="card-text">xyz@gmail.com</p>
-                    <p class="card-text">+91 1234567890</p>
+    <div class="card w-75" *ngIf="user">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img class="d-block w-100" src="../../assets/profilePic/{{user.profilePath}}" alt="User Image">
+                    </div>
+                    <div class="col-sm-8">
+                        <!-- <div class="list-group list-group-flush" *ngIf="!isUpdate">
+                            <div class="list-group-item">Name:{{user.username}}</div>
+                            <div class="list-group-item">Email Id:{{user.email_id}}</div>
+                            <div class="list-group-item">Gender:{{user.gender}}</div>
+                            <div class="list-group-item">Mobile No:{{user.phoneno}}</div>
+                            <button class="btn btn-block" style="background-color:#FF4E14;color:white;" (click)="updateClick()">
+                                Update
+                            </button>
+                        </div> -->
+                        <div class="list-group list-group-flush">
+                            <form [formGroup]="myForm">
+                                <div class="row" style="margin: 5px;">
+                                    <div class="col-sm-4">
+                                        Username:
+                                    </div>
+                                    <div class="col-sm">
+                                        <input class="form-control" [readonly]="!isUpdate" formControlName="username" [(ngModel)]="user.username" type="text" id="username" name="username" required>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin: 5px;" *ngIf="(myFormControl.username.touched || submitted) && (myFormControl.username.errors?.required)">
+                                    <div class="col-sm-4">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-sm">
+                                        <span class="text-danger">
+                                            Please provide username
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin: 5px;">
+                                    <div class="col-sm-4">
+                                        Email:
+                                    </div>
+                                    <div class="col-sm">
+                                        <input class="form-control" [readonly]="!isUpdate" formControlName="email_id" [(ngModel)]="user.email_id" type="email" id="email" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin: 5px;" *ngIf="(myFormControl.email_id.touched || submitted) && (myFormControl.email_id.errors?.required || myFormControl.email_id.errors?.email)">
+                                    <div class="col-sm-4">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-sm">
+                                        <span class="text-danger">
+                                            Please provide valid email address!
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin: 5px;">
+                                    <div class="col-sm-4">
+                                        Mobile No:
+                                    </div>
+                                    <div class="col-sm">
+                                        <input class="form-control" [readonly]="!isUpdate" formControlName="phoneno" [(ngModel)]="user.phoneno" type="tel" id="phoneno" name="phoneno" required>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin: 5px;" *ngIf="(myFormControl.phoneno.touched || submitted) && (myFormControl.phoneno.errors)">
+                                    <div class="col-sm-4">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-sm">
+                                        <span class="text-danger">
+                                            Please provide valid mobile number!
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin: 5px;" *ngIf="!isUpdate">
+                                    <div class="col-sm-4">
+                                        Gender:
+                                    </div>
+                                    <div class="col-sm">
+                                        <input class="form-control" [readonly]="!isUpdate" formControlName="gender" [(ngModel)]="user.gender" type="text" id="gender" name="gender" required>
+                                    </div>
+                                </div>
+                                <div *ngIf="isUpdate">
+                                    <div class="row" style="margin: 5px;">
+                                        <div class="col-sm-4">
+                                            Gender:
+                                        </div>
+                                        <div class="col-sm" style="display: flex;align-items: center;min-width:220px;max-width:250px;">
+                                            <input class="form-control" value="Male" formControlName="gender" [(ngModel)]="user.gender" type="radio" required>Male
+                                            <input class="form-control" value="Female" formControlName="gender" [(ngModel)]="user.gender" type="radio" required>Female
+                                            <input class="form-control" value="Other" formControlName="gender" [(ngModel)]="user.gender" type="radio" required>Other
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin: 5px;">
+                                        <div class="col-sm-4">
+                                            Profile Image:
+                                        </div>
+                                        <div class="col-sm">
+                                            <!-- <input class="form-control" formControlName="profilePath" (change)="onFileChange($event)" type="file" id="profilePath " accept=".jpg,.png,.pdf "> -->
+                                            <input type="file" class="custom-file-input" id="uploadedImage" name="uploadedImage" (change)="onFileChange($event)">
+
+                                            <label class="custom-file-label" for="uploadedImage">{{profilePath|| 'Choose File'}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin: 5px;" *ngIf="error">
+                                    <div class="col-sm-4">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-sm">
+                                        <span class="text-danger">
+                                            There is some issue in update try again!
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center " style="margin: 5px;" *ngIf="!isUpdate">
+                                    <div class="col-sm ">
+                                        <button class="btn btn-block" style="background-color:#FF4E14;color:white;" (click)="updateClick()">
+                                            Update
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center " style="margin: 5px; " *ngIf="isUpdate">
+                                    <div class="col-sm ">
+                                        <button type="button" (click)="updateSave()" id="find_btn " class="btn btn-block " style="background-color:#FF4E14;color:white; ">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row" style="margin:20px 1px 20px">
-            <div class="col">
-                <a class="btn btn-block" style="background-color:#ff8c00;color:white">Update</a>
-            </div>
-            <div class="col">
-                <a class="btn btn-block" style="background-color:#ff8c00;color:white">Travel History</a>
+        <div class="card-footer">
+            <div id="accordian">
+                <div class="card history">
+                    <div class="card-header">
+                        <a data-toggle="collapse" class="dropdown-toggle" href="#travel_history" style="color: #FF4E14;">Travel History</a>
+                    </div>
+                    <div class="collapse hide" id="travel_history" data-parent="#accordian">
+                        <div class="card-body">
+                            ngflknflken
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

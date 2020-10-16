@@ -86,10 +86,6 @@ export class LoginComponent implements OnInit {
     else {
       this.auth.login(user);
       this.router.navigate(['/home']);
-      // this.router.navigate(['/navigation']).then(() => {
-      //   console.log("Navigation done");
-
-      // });
     }
   }
 }

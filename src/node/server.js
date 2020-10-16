@@ -3,6 +3,10 @@ var app = express();
 var bodyParser = require('body-parser');
 var fs = require('fs');
 
+
+var multer = require('multer');
+const fileUpload = require('express-fileupload');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -13,6 +17,28 @@ app.use((req, res, next) => {
     next();
 });
 
+
+const profileDIR = "../assets/profilePic";
+const profileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, profileDIR);
+    },
+    filename: (req, file, cb) => {
+        const fileName = file.originalname;
+        cb(null, fileName)
+    }
+});
+var profileUpload = multer({
+    storage: profileStorage,
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+            cb(null, true);
+        } else {
+            cb(null, false);
+            return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+        }
+    }
+})
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/car_rental_db", { useNewUrlParser: true, useUnifiedTopology: true });
@@ -67,7 +93,7 @@ function mongoConnected() {
                 // res.status(400);
                 res.send(user);
             } else {
-                console.log("User found");
+                // console.log("User found");
                 res.send(user);
             }
         });
@@ -80,7 +106,7 @@ function mongoConnected() {
                 res.send("Unable to find user");
             } else {
                 console.log("Login successfully");
-                console.log(data);
+                // console.log(data);
                 res.send(data);
             }
         });
@@ -96,6 +122,44 @@ function mongoConnected() {
                 res.json({ "message": "User added successfully" });
             }
         });
+    });
+    app.post("/updateProfile", (req, res) => {
+        var newUser = new Users(req.body);
+        Users.findOne({ _id: newUser._id }, function(err, data) {
+            if (err) {
+                res.status(400);
+                res.send("Unable to save data");
+            } else if (data == null) {
+                res.send({ 'message': "No user found" });
+            } else {
+                data.username = newUser.username;
+                data.gender = newUser.gender;
+                data.profilePath = newUser.profilePath;
+                data.phoneno = newUser.phoneno;
+                data.email_id = newUser.email_id;
+                data.save(function(err) {
+                    if (err) {
+                        res.status(400);
+                        res.send("Update fail");
+                    } else {
+                        res.send({ 'message': "Update success" });
+                    }
+                });
+            }
+        });
+    });
+    app.post("/api/uploadProfile", profileUpload.single('uploadedImage'), (req, res) => {
+        if (!req.file) {
+            console.log("No file received");
+            return res.send({
+                success: false
+            });
+        } else {
+            console.log('file received successfully');
+            return res.send({
+                success: true
+            })
+        }
     });
     //For Cars
     app.get("/allcars/:cate", (req, res) => {

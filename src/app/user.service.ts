@@ -20,6 +20,9 @@ export class UserService {
   private _url = "http://localhost:8000/";
   constructor(private http: HttpClient) { }
 
+  getUser(email_id: String): Observable<any> {
+    return this.http.get<User>(this._url + "findUser/" + email_id);
+  }
   tryLogin(email_id: String, password: String): Observable<any> {
     return this.http.get<User>(this._url + "login/" + email_id + "/" + password)
   }
@@ -28,5 +31,11 @@ export class UserService {
   }
   trySignUp(user: User): Observable<any> {
     return this.http.post<any>(this._url + "addUser", user, httpOptions);
+  }
+  uploadProfilePic(formData: FormData): Observable<any> {
+    return this.http.post<HttpResponse<any>>(this._url + "api/uploadProfile", formData);
+  }
+  updateProfile(user: User): Observable<any> {
+    return this.http.post<HttpResponse<any>>(this._url + "updateProfile", user, httpOptions);
   }
 }

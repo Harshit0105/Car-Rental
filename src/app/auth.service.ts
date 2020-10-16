@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { User } from './IUser';
+import { CookieService } from 'ngx-cookie-service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ import { User } from './IUser';
 export class AuthService {
   user: User;
   userObserver: Subject<any> = new Subject();
-  constructor() { }
+  constructor(private cookiservice: CookieService, private userservice: UserService) { }
   getUser() {
     return this.user;
   }

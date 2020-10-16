@@ -5,7 +5,8 @@ body {
 .bg-img {
     margin: 0px;
     background-image: url(../../assets/images/cost_finder.jpg);
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     width: 100%;
     overflow: hidden;
 }
@@ -28,4 +29,42 @@ body {
     box-shadow: none;
     cursor: default;
     border-color: black;
+}
+
+.card {
+    margin: 90px auto;
+    padding: 0;
+}
+
+.card-header {
+    background-color: #FF4E14;
+    color: white;
+}
+
+.carousel {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+img {
+    max-width: 250px;
+    max-height: 250px;
+    min-width: 250px;
+    min-height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-footer {
+    margin: 2px;
+    padding: 5px;
+}
+
+.history {
+    margin: 2px auto;
+}
+
+.history .card-header {
+    background-color: white;
 }

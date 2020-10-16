@@ -20,8 +20,9 @@
         <a (click)="carDetails(car)" class="card">
             <img class="card-img-top" src="../../assets/carPic/{{car.bodyPic}}">
             <div class="card-body">
-                <h1 class="card-title">{{car.name}}</h1>
-                <p class="card-text">Price: {{car.price | currency:'INR'}}/day</p>
+                <h1 class="card-title">{{car.name || bold}}</h1>
+                <hr>
+                <h6 class="card-text">Price: {{car.price | currency:'INR':'symbol' : '1.0-0'}}/day</h6>
             </div>
         </a>
     </div>
