@@ -17,10 +17,14 @@ export class TripService {
 
   constructor(private http: HttpClient) { }
   getAllTrips(card_id: String): Observable<any> {
-    return this.http.get<ITrip>("http://localhost:8000/getTrips/" + card_id);
+    return this.http.get<ITrip[]>("http://localhost:8000/getTrips/" + card_id);
   }
 
   addTrip(trip: ITrip): Observable<any> {
-    return this.http.post<HttpResponse<any>>('esva', trip, httpOptions);
+    return this.http.post<HttpResponse<any>>('http://localhost:8000/addTrip', trip, httpOptions);
+  }
+
+  getUserTrips(user_id: String): Observable<any> {
+    return this.http.get<ITrip[]>("http://localhost:8000/getUserTrips/" + user_id);
   }
 }

@@ -74,8 +74,8 @@ function mongoConnected() {
         user_id: String,
         startDate: Date,
         endDate: Date,
-        status: String,
         amount: Number,
+        car_name: String,
     }, { collection: 'Trip' });
     var Users = mongoose.model('User', Users);
     var Item = mongoose.model('Car', Item);
@@ -221,12 +221,35 @@ function mongoConnected() {
                 res.status(400);
                 res.send("Unable to find Cars");
             } else {
-                console.log("All Trip Returned");
+                // console.log("All Trip Returned");
                 // console.log(cars);
                 res.send(trips);
             }
         });
+    });
 
+    app.get("/getUserTrips/:user_id", (req, res) => {
+        Trip.find({ 'user_id': req.params.user_id }, function(err, trips) {
+            if (err) {
+                res.status(400);
+                res.send("Unable to find trips");
+            } else {
+                res.send(trips);
+            }
+        });
+    });
+
+    app.post("/addTrip", (req, res) => {
+        var newTrip = new Trip(req.body);
+        newTrip.save(function(err, data) {
+            if (err) {
+                res.status(400);
+                res.send("Unable to save data");
+            } else {
+                res.status(200);
+                res.json({ "message": "Trip added successfully" });
+            }
+        });
     });
 }
 app.listen(8000, () => console.log("Server running on port 8000"));

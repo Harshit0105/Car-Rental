@@ -80,6 +80,7 @@ export class LoginComponent implements OnInit {
   checkResponse(user: User) {
     this.cookieservice.set("email_id", user.email_id.toString());
     this.cookieservice.set("role", user.role.toString());
+    this.cookieservice.set("user_id", user._id.toString());
     if (user.role == "admin") {
       this.router.navigate(['/admin']);
     }

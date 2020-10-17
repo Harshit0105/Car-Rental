@@ -20,7 +20,7 @@ export class CarserviceService {
   getCars(category: String): Observable<ICar[]> {
     return this.http.get<ICar[]>("http://localhost:8000/allcars/" + category)
   }
-  getCarDetail(id: String): Observable<ICar[]> {
-    return this.http.get<ICar[]>("http://localhost:8000/carDetails/" + id)
+  getCarDetail(id: String): Observable<ICar> {
+    return this.http.get<ICar>("http://localhost:8000/carDetails/" + id);
   }
 }

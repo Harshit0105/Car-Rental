@@ -1,9 +1,18 @@
 .card {
-    margin: 90px auto;
-    padding: 0;
+    margin: 30px auto 10px;
+}
+
+.bg-img {
+    margin: 0px;
+    background-image: url(../../assets/images/cost_finder.jpg);
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    overflow: hidden;
 }
 
 .card-header {
+    margin: -1px;
     background-color: #FF4E14;
     color: white;
 }
@@ -13,8 +22,36 @@
     border-radius: 20px;
 }
 
+.breadcrumb {
+    /* background-color: rgba(255, 78, 20, 0.4); */
+    background-color: white;
+}
+
+.breadcrumb .breadcrumb-item {
+    color: black;
+}
+
+button {
+    background-color: #FF4E14;
+    color: white;
+}
+
 img {
     width: 100%;
     height: 45vh;
     overflow: hidden;
+}
+
+.booking {
+    margin: 10px auto;
+}
+
+.btn:focus,
+.btn:active,
+.form-control:active,
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+    cursor: default;
+    border-color: black;
 }

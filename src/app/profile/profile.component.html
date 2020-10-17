@@ -135,11 +135,35 @@
             <div id="accordian">
                 <div class="card history">
                     <div class="card-header">
-                        <a data-toggle="collapse" class="dropdown-toggle" href="#travel_history" style="color: #FF4E14;">Travel History</a>
+                        <a data-toggle="collapse" class="dropdown-toggle" href="#travel_history" style="color: #FF4E14;">Bookings</a>
                     </div>
                     <div class="collapse hide" id="travel_history" data-parent="#accordian">
                         <div class="card-body">
-                            ngflknflken
+                            <div *ngIf="trips">
+                                <div *ngIf="!trips.length">
+                                    <h4>No booking yet!</h4>
+                                </div>
+                                <div *ngIf="trips.length">
+                                    <table class="table table-striped table-dark">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Start Date</th>
+                                                <th scope="col">End Date</th>
+                                                <th scope="col">Car Name</th>
+                                                <th scope="col">Total Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let trip of trips">
+                                                <td>{{trip.startDate| date:'dd-M-yyyy'}}</td>
+                                                <td>{{trip.endDate | date:'dd-M-yyyy'}}</td>
+                                                <td>{{trip.car_name}}</td>
+                                                <td>{{trip.amount}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

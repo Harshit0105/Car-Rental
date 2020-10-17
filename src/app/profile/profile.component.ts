@@ -4,12 +4,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { User } from '../IUser';
 import { UserService } from '../user.service';
+import { ITrip } from '../ITrip';
+import { TripService } from '../trip.service';
+import { CarserviceService } from '../carservice.service';
 import {
   FormBuilder,
   FormGroup,
   Validators,
   AbstractControl
 } from '@angular/forms';
+import { ICar } from '../ICar';
 
 const UploadURL = 'http://localhost:8000/api/upload';
 
@@ -26,13 +30,17 @@ export class ProfileComponent implements OnInit {
   profilePath: string;
   uploadedImage: File;
   error: Boolean;
+  trips: ITrip[];
+  tripCars: ICar[];
 
   constructor(
     private fb: FormBuilder,
     private userservice: UserService,
     private router: Router,
     private cookiservice: CookieService,
-    private auth: AuthService
+    private auth: AuthService,
+    private tripservice: TripService,
+    private carservice: CarserviceService,
   ) { }
 
   ngOnInit(): void {
@@ -48,6 +56,12 @@ export class ProfileComponent implements OnInit {
       }
       else {
         this.user = res;
+        this.tripservice.getUserTrips(this.user._id).subscribe((res) => {
+          this.trips = res;
+          this.trips.forEach(element => {
+            console.log(element.startDate);
+          });
+        });
       }
     });
     this.myForm = this.fb.group({

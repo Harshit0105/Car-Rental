@@ -4,6 +4,6 @@ export interface ITrip {
     user_id: String,
     startDate: Date,
     endDate: Date,
-    status: String,
     amount: Number,
+    car_name: String;
 } 
