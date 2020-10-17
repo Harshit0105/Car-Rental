@@ -69,8 +69,17 @@ function mongoConnected() {
         category: String,
         available: Boolean,
     }, { collection: 'Cars' });
+    var Trip = new mongoose.Schema({
+        car_id: String,
+        user_id: String,
+        startDate: Date,
+        endDate: Date,
+        status: String,
+        amount: Number,
+    }, { collection: 'Trip' });
     var Users = mongoose.model('User', Users);
     var Item = mongoose.model('Car', Item);
+    var Trip = mongoose.model('Trip', Trip);
     //For Users
     app.get("/alluser", (req, res) => {
         Users.find(function(err, user) {
@@ -83,6 +92,7 @@ function mongoConnected() {
             }
         });
     });
+    app.get("/findUser/", (req, res) => { res.send(null) });
     app.get("/findUser/:email", (req, res) => {
         Users.findOne({ 'email_id': req.params.email }, function(err, user) {
             if (err) {
@@ -161,6 +171,8 @@ function mongoConnected() {
             })
         }
     });
+
+
     //For Cars
     app.get("/allcars/:cate", (req, res) => {
         // console.log("Request come!");
@@ -188,6 +200,7 @@ function mongoConnected() {
             });
         }
     });
+
     app.get("/carDetails/:id", (req, res) => {
         Item.find({ '_id': req.params.id }, function(err, cars) {
             if (err) {
@@ -198,6 +211,22 @@ function mongoConnected() {
                 res.send(cars);
             }
         });
+    });
+
+
+    //For Trips
+    app.get("/getTrips/:car_id", (req, res) => {
+        Trip.find({ 'car_id': req.params.car_id }, function(err, trips) {
+            if (err) {
+                res.status(400);
+                res.send("Unable to find Cars");
+            } else {
+                console.log("All Trip Returned");
+                // console.log(cars);
+                res.send(trips);
+            }
+        });
+
     });
 }
 app.listen(8000, () => console.log("Server running on port 8000"));

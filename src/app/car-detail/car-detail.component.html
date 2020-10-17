@@ -51,6 +51,13 @@
                         <div class="list-group-item">Price: {{car.price|currency:'INR':'symbol' : '1.0-0'}}/day</div>
                         <div class="list-group-item" *ngIf="available" style="color:green">Avaliable</div>
                         <div class="list-group-item" *ngIf="!available" style="color:red">Not Avaliable!</div>
+                        <div class="row align-items-center " style="margin: 5px;">
+                            <div class="col-sm ">
+                                <button (click)="booking(car._id)" class="btn btn-block" style="background-color:#FF4E14;color:white;">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

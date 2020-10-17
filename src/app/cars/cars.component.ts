@@ -25,7 +25,7 @@ export class CarsComponent implements OnInit {
   callService(category: String) {
     this.carservice.getCars(category).subscribe(rescar => {
       this.cars = rescar;
-      this.cars = this.cars.sort((a, b) => (a.price > b.price ? -1 : 1))
+      this.cars = this.cars.sort((a, b) => (a.price > b.price ? -1 : 1)).filter((a) => a.available);
     })
   }
   carDetails(car: ICar) {

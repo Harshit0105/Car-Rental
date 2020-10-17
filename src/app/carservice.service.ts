@@ -8,7 +8,15 @@ import { ICar } from './ICar';
   providedIn: 'root'
 })
 export class CarserviceService {
+  car: ICar;
   constructor(private http: HttpClient) { }
+
+  setCar(car: ICar) {
+    this.car = car
+  }
+  getCar() {
+    return this.car;
+  }
   getCars(category: String): Observable<ICar[]> {
     return this.http.get<ICar[]>("http://localhost:8000/allcars/" + category)
   }

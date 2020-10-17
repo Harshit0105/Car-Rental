@@ -8,6 +8,8 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { CarserviceService } from './carservice.service';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
+import { TripService } from './trip.service';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { AuthService } from './auth.service';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [CarserviceService, HttpClient, UserService, AuthService],
+  providers: [CarserviceService, HttpClient, UserService, AuthService, TripService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

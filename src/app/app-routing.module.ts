@@ -13,6 +13,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminComponent } from './admin/admin.component';
 import { CarDetailComponent } from './car-detail/car-detail.component';
+import { BookingComponent } from './booking/booking.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'carDetails', component: CarsComponent },
   { path: 'navigation', component: NavigationComponent },
   { path: 'carDetails/:id', component: CarDetailComponent },
+  { path: 'carBooking/:id', component: BookingComponent },
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
@@ -52,4 +54,5 @@ export const routingComponents = [
   PageNotFoundComponent,
   AdminComponent,
   CarDetailComponent,
+  BookingComponent,
 ]

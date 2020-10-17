@@ -21,9 +21,6 @@ export class CarDetailComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     this.Aroute.params.subscribe((param) => this.getData(param.id));
-    // this.id = this.Aroute.snapshot.paramMap.get('id');
-    // this.getData();
-
   }
   getData(id: string) {
     this.id = id;
@@ -36,6 +33,11 @@ export class CarDetailComponent implements OnInit {
       this.getCategory(this.car.category);
       // console.log(this.car);
     })
+  }
+
+  booking(id: String) {
+    this.carservice.setCar(this.car);
+    this.router.navigate(['carBooking', id])
   }
   getCategory(cate: String) {
     switch (cate) {

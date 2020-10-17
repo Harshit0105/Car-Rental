@@ -1,0 +1,65 @@
+<div class="bg-img">
+    <div class="card w-75">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="list-group list-group-flush">
+                            <div class="list-gourp-items">
+                                <div class="row" style="margin: 5px;">
+                                    <div class="col-sm-4">
+                                        Travel Date:
+                                    </div>
+                                    <div class="col-sm">
+                                        <input [(ngModel)]="start" type="date" id="start" min="{{minPick | date:'yyyy-MM-dd'}}" max="{{maxPick | date:'yyyy-MM-dd'}}" name="start " (change)="startPick() " required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-gourp-items ">
+                                <div class="row " style="margin: 5px; ">
+                                    <div class="col-sm-4 ">
+                                        Return Date::
+                                    </div>
+                                    <div class="col-sm ">
+                                        <input [(ngModel)]="end" [disabled]="!startSelected" min="{{start | date:'yyyy-MM-dd'}}" max="{{maxEndPick | date:'yyyy-MM-dd'}}" type="date" id="end " name="end " (change)="endPick() " required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-gourp-items ">
+                                <div class="row " style="margin: 5px; ">
+                                    <div class="col-sm-4 ">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-sm ">
+                                        <button class="btn " [disabled]="!startSelected || !endSelected" (click)="checkTrips()" style="background-color:#FF4E14;color:white; ">Check</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="list-group list-group-flush" *ngIf="checked">
+                            <div *ngIf="found">
+                                <div class="list-items">
+                                    Start Date: {{start | date:'dd-mm-yyyy'}}
+                                </div>
+                                <div class="list-items">
+                                    End Date: {{end | date:'dd-mm-yyyy'}}
+                                </div>
+                                <div class="list-items">
+                                    Total Amount: {{amount}}
+                                </div>
+                                <div class="list-items">
+                                    <button class="btn" [disabled]="checkout" (click)="checkOut({'startDate':start,'endDate':end,'amount':amount})" style="background-color:#FF4E14;color:white; ">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!found">
+                            <h4>This car is not available for selected dates.</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
