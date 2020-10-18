@@ -39,6 +39,27 @@ var profileUpload = multer({
         }
     }
 })
+const carDIR = "../assets/carPic";
+const carStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, carDIR);
+    },
+    filename: (req, file, cb) => {
+        const fileName = file.originalname;
+        cb(null, fileName)
+    }
+});
+var carUpload = multer({
+    storage: carStorage,
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+            cb(null, true);
+        } else {
+            cb(null, false);
+            return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+        }
+    }
+})
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/car_rental_db", { useNewUrlParser: true, useUnifiedTopology: true });
@@ -89,6 +110,17 @@ function mongoConnected() {
             } else {
                 console.log("All users");
                 res.json(user);
+            }
+        });
+    });
+    app.get("/findUserById/:id", (req, res) => {
+        Users.find({ _id: req.params.id }, function(err, user) {
+            if (err) {
+                res.status(400);
+                res.send("Unable to find users");
+            } else {
+                console.log("All users");
+                res.send(user);
             }
         });
     });
@@ -213,8 +245,92 @@ function mongoConnected() {
         });
     });
 
+    app.post("/addNewCar", (req, res) => {
+        var newCar = new Item(req.body);
+        newCar.save(function(err, data) {
+            if (err) {
+                res.status(400);
+                res.send("Unable to save data");
+            } else {
+                res.status(200);
+                res.send({ id: data._id });
+            }
+        });
+    });
+
+    app.post("/updateCar", (req, res) => {
+        var newCar = new Item(req.body);
+        Item.findOne({ _id: newCar._id }, function(err, data) {
+            if (err) {
+                res.status(400);
+                res.send("Unable to save data");
+            } else if (data == null) {
+                res.send({ 'message': "No car found" });
+            } else {
+                data.name = newCar.name;
+                data.price = newCar.price;
+                data.transmission = newCar.transmission;
+                data.available = newCar.available;
+                data.category = newCar.category;
+                data.bodyPic = newCar.bodyPic;
+                data.interiorPic = newCar.interiorPic;
+                data.save(function(err) {
+                    if (err) {
+                        res.status(400);
+                        res.send("Update fail");
+                    } else {
+                        res.send({ 'message': "Update success" });
+                    }
+                });
+            }
+        });
+    });
+
+    app.post("/addCarPic", carUpload.single('uploadedImage'), (req, res) => {
+        if (!req.file) {
+            console.log("No file received");
+            return res.send({
+                success: false
+            });
+        } else {
+            console.log('file received successfully');
+            return res.send({
+                success: true
+            })
+        }
+    });
+
+    app.delete("/deleteCar/:id", (req, res) => {
+        Item.findOne({ _id: req.params.id }, function(err, itm) {
+            if (err) {
+                res.status(400);
+                res.send("Unable to find an Car");
+            } else {
+                itm.deleteOne(function(err) {
+                    if (err) {
+                        console.log("Unable to remove Car");
+                        res.status(400);
+                        res.send("Unable to remove Car");
+                    }
+                    console.log("Offer removed!");
+                    res.send({ "message": "Offer removed!" });
+                });
+            }
+        });
+    })
 
     //For Trips
+    app.get("/getAllTrips", (req, res) => {
+        Trip.find(function(err, trips) {
+            if (err) {
+                res.status(400);
+                res.send("Unable to find Cars");
+            } else {
+                res.status(200);
+                res.send(trips);
+            }
+        });
+    });
     app.get("/getTrips/:car_id", (req, res) => {
         Trip.find({ 'car_id': req.params.car_id }, function(err, trips) {
             if (err) {

@@ -72,9 +72,6 @@ export class LoginComponent implements OnInit {
         }
       });
     }
-    else {
-
-    }
   }
 
   checkResponse(user: User) {
@@ -82,7 +79,8 @@ export class LoginComponent implements OnInit {
     this.cookieservice.set("role", user.role.toString());
     this.cookieservice.set("user_id", user._id.toString());
     if (user.role == "admin") {
-      this.router.navigate(['/admin']);
+      this.auth.login(user);
+      this.router.navigate(['/admin']).then(() => location.reload());
     }
     else {
       this.auth.login(user);

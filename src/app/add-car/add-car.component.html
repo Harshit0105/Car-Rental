@@ -9,76 +9,72 @@
             </div>
             <div class="card-body">
                 <div class="container">
-                    <div class="row" style="margin: 10px;">
-                        <div class="col-sm-4">
-                            Car Name:
+                    <form [formGroup]="myForm">
+                        <div class="row" style="margin: 10px;">
+                            <div class="col-sm-4">
+                                Car Name:
+                            </div>
+                            <div class="col-sm">
+                                <input class="form-control" formControlName="carname" [(ngModel)]="carname" type="text" id="cname" name="cname" required>
+                            </div>
                         </div>
-                        <div class="col-sm">
-                            <input class="form-control" type="text" id="cname" name="cname" required>
-                        </div>
-                    </div>
-                    <div class="row" style="margin: 10px;">
-                        <div class="col-sm-4">
-                            Car Type:
-                        </div>
-                        <div class="col-sm">
-                            <select name="car_type" id="car_type" class="form-control">
-                                <option value="ALL" selected>Select Type</option>
-                                <option value="EC">Economy Cars</option>
-                                <option value="CC">Compact Car</option>
-                                <option value="MS">Mid Size Car</option>
-                                <option value="FS">Full Size Car</option>
-                                <option value="PC">Premium Car</option>
-                                <option value="LC">Luxury Car</option>
-                                <option value="SC">SUVs Car</option>
+                        <div class="row" style="margin: 10px;">
+                            <div class="col-sm-4">
+                                Car Type:
+                            </div>
+                            <div class="col-sm">
+                                <select name="car_type" formControlName="category" [(ngModel)]="category" id="car_type" class="form-control">
+                                <option value="ec">Economy Cars</option>
+                                <option value="cc">Compact Car</option>
+                                <option value="ms">Mid Size Car</option>
+                                <option value="fs">Full Size Car</option>
+                                <option value="pc">Premium Car</option>
+                                <option value="lc">Luxury Car</option>
+                                <option value="suv">SUVs Car</option>
                             </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row" style="margin: 10px;">
-                        <div class="col-sm-4">
-                            Car No:
+                        <div class="row" style="margin: 10px;">
+                            <div class="col-sm-4">
+                                Tansmission:
+                            </div>
+                            <div class="col-sm" style="display: flex;align-items: center;min-width:220px;max-width:250px;">
+                                <input class="form-control" value="Manual" formControlName="transmission" [(ngModel)]="transmission" type="radio" required>Manual
+                                <input class="form-control" value="Auto" formControlName="transmission" [(ngModel)]="transmission" type="radio" required>Auto
+                            </div>
                         </div>
-                        <div class="col-sm">
-                            <input class="form-control" type="text" id="cno" name="cno" required>
+                        <div class="row" style="margin: 10px;">
+                            <div class="col-sm-4">
+                                Price (/day):
+                            </div>
+                            <div class="col-sm">
+                                <input class="form-control" formControlName="price" [(ngModel)]="price" type="number" id="pday" name="pday" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row" style="margin: 10px;">
-                        <div class="col-sm-4">
-                            Price (/km):
+                        <div class="row" style="margin: 10px;">
+                            <div class="col-sm-4">
+                                Car Image:
+                            </div>
+                            <div class="col-sm">
+                                <input type="file" class="custom-file-input" id="bodyPic" name="bodyPic" (change)="onBodyFileChange($event)">
+                                <label class="custom-file-label" for="bodyPic">{{bodyPath|| 'Choose File'}}</label>
+                            </div>
                         </div>
-                        <div class="col-sm">
-                            <input class="form-control" type="number" id="pkm" name="pkm" required>
+                        <div class="row" style="margin: 10px;">
+                            <div class="col-sm-4">
+                                Interior Image:
+                            </div>
+                            <div class="col-sm">
+                                <input type="file" class="custom-file-input" id="interiorPic" name="interiorPic" (change)="onIntFileChange($event)">
+                                <label class="custom-file-label" for="interiorPic">{{intPath|| 'Choose File'}}</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row" style="margin: 10px;">
-                        <div class="col-sm-4">
-                            Price (/day):
+                        <div class="row" style="margin: 10px;">
+                            <div class="col-sm-12">
+                                <button class="btn btn-block" (click)="addCar({'name':carname,'price':price,'transmission':transmission,'bodyPic':'','interiorPic':'','category':category,'available':true})" style="background-color: #FF4E14;color: white;">Add</button>
+                            </div>
                         </div>
-                        <div class="col-sm">
-                            <input class="form-control" type="number" id="pday" name="pday" required>
-                        </div>
-                    </div>
-                    <div class="row" style="margin: 10px;">
-                        <div class="col-sm-4">
-                            Discription:
-                        </div>
-                        <div class="col-sm">
-                            <textarea class="form-control" id="disc" name="disc" required></textarea>
-                        </div>
-                    </div>
-                    <div class="row" style="margin: 10px;">
-                        <div class="col-sm-4">
-                            Photos:
-                        </div>
-                        <div class="col-sm">
-                            <input class="form-control" type="file" multiple id="pics" name="pics" required>
-                        </div>
-                    </div>
-                    <div class="row" style="margin: 10px;">
-                        <div class="col-sm-12">
-                            <button class="btn btn-block" style="background-color: #FF4E14;color: white;">Add</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

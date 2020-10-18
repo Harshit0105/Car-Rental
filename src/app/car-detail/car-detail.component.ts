@@ -68,7 +68,7 @@ export class CarDetailComponent implements OnInit {
       this.getCategory(this.car.category);
       // console.log(this.car);
     });
-    this.trip.getAllTrips(id).subscribe((res) => {
+    this.trip.getCarTrips(id).subscribe((res) => {
       this.trips = res;
       console.log(this.trips);
     });

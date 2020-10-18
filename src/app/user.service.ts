@@ -20,8 +20,14 @@ export class UserService {
   private _url = "http://localhost:8000/";
   constructor(private http: HttpClient) { }
 
+  getAllUser(): Observable<any> {
+    return this.http.get<User[]>(this._url + "alluser/");
+  }
   getUser(email_id: String): Observable<any> {
     return this.http.get<User>(this._url + "findUser/" + email_id);
+  }
+  getUserById(id: String): Observable<any> {
+    return this.http.get<User>(this._url + "findUserById/" + id);
   }
   tryLogin(email_id: String, password: String): Observable<any> {
     return this.http.get<User>(this._url + "login/" + email_id + "/" + password)

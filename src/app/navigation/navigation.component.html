@@ -5,14 +5,24 @@
     <a *ngIf="isLoged" (click)="logout()">Logout</a>
     <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoged">SignUp</a>
     <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoged">Login</a>
-    <a routerLink="/profile" routerLinkActive="active">Profile</a>
-    <a routerLink="/cars/all" routerLinkActive="active">Cars</a>
-    <a routerLink="/home" routerLinkActive="active">Home</a>
+    <a routerLink="/profile" routerLinkActive="active" *ngIf="!isAdmin">Profile</a>
+    <a routerLink="/cars/all" routerLinkActive="active" *ngIf="!isAdmin">Cars</a>
+    <a routerLink="/home" routerLinkActive="active" *ngIf="!isAdmin">Home</a>
+    <a routerLink="/addCar" routerLinkActive="active" *ngIf="isLoged && isAdmin">Add Car</a>
+    <a routerLink="/adminCars" routerLinkActive="active" *ngIf="isLoged && isAdmin">Cars</a>
+    <a routerLink="/adminTrips" routerLinkActive="active" *ngIf="isLoged && isAdmin">Trips</a>
+    <a routerLink="/adminUsers" routerLinkActive="active" *ngIf="isLoged && isAdmin">Users</a>
+    <a routerLink="/admin" routerLinkActive="active" *ngIf="isAdmin">Home</a>
 </nav>
 <div id="myTopNav">
-    <a routerLink="/home" routerLinkActive="active">Home</a>
-    <a routerLink="/cars/all" routerLinkActive="active">Cars</a>
-    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+    <a routerLink="/admin" routerLinkActive="active" *ngIf="isAdmin">Home</a>
+    <a routerLink="/addCar" routerLinkActive="active" *ngIf="isLoged && isAdmin">Add Car</a>
+    <a routerLink="/adminCars" routerLinkActive="active" *ngIf="isLoged && isAdmin">Cars</a>
+    <a routerLink="/adminTrips" routerLinkActive="active" *ngIf="isLoged && isAdmin">Trips</a>
+    <a routerLink="/adminUsers" routerLinkActive="active" *ngIf="isLoged && isAdmin">Users</a>
+    <a routerLink="/home" routerLinkActive="active" *ngIf="!isAdmin">Home</a>
+    <a routerLink="/cars/all" routerLinkActive="active" *ngIf="!isAdmin">Cars</a>
+    <a routerLink="/profile" routerLinkActive="active" *ngIf="!isAdmin">Profile</a>
     <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoged">Login</a>
     <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoged">SignUp</a>
     <a *ngIf="isLoged" (click)="logout()">Logout</a>

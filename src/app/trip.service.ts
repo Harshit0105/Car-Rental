@@ -16,7 +16,7 @@ export const httpOptions = {
 export class TripService {
 
   constructor(private http: HttpClient) { }
-  getAllTrips(card_id: String): Observable<any> {
+  getCarTrips(card_id: String): Observable<any> {
     return this.http.get<ITrip[]>("http://localhost:8000/getTrips/" + card_id);
   }
 
@@ -26,5 +26,9 @@ export class TripService {
 
   getUserTrips(user_id: String): Observable<any> {
     return this.http.get<ITrip[]>("http://localhost:8000/getUserTrips/" + user_id);
+  }
+
+  getAllTrips(): Observable<any> {
+    return this.http.get<ITrip[]>("http://localhost:8000/getAllTrips/");
   }
 }

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CostFinderComponent } from './cost-finder.component';
+import { AdminCarEditComponent } from './admin-car-edit.component';
 
-describe('CostFinderComponent', () => {
-  let component: CostFinderComponent;
-  let fixture: ComponentFixture<CostFinderComponent>;
+describe('AdminCarEditComponent', () => {
+  let component: AdminCarEditComponent;
+  let fixture: ComponentFixture<AdminCarEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CostFinderComponent ]
+      declarations: [ AdminCarEditComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CostFinderComponent);
+    fixture = TestBed.createComponent(AdminCarEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -17,9 +17,6 @@ export class CarsComponent implements OnInit {
   constructor(private carservice: CarserviceService, private Aroute: ActivatedRoute, private router: Router, private cookiservice: CookieService) { }
 
   ngOnInit(): void {
-    if (!this.cookiservice.check('email_id')) {
-      this.router.navigate(['/login']);
-    }
     this.Aroute.params.subscribe((param) => this.callService(param.cate));
   }
   callService(category: String) {

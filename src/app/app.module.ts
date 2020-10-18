@@ -9,12 +9,18 @@ import { CarserviceService } from './carservice.service';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { TripService } from './trip.service';
+import { MyCategoryPipe } from './my-category.pipe';
+
+
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
+    MyCategoryPipe,
   ],
   imports: [
     BrowserModule,

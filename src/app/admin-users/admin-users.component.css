@@ -1,0 +1,19 @@
+.bg-img {
+    margin: 0px;
+    background-image: url(../../assets/images/cost_finder.jpg);
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    max-height: 80vh;
+    height: auto;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}

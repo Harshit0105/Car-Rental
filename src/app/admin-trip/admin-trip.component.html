@@ -1,0 +1,26 @@
+<div class="bg-img">
+    <div class="card" style="margin: 50px auto 5px;width: 80rem;" *ngIf="result">
+        <div class="card-body">
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-light table-striped mb-0">
+                    <thead>
+                        <th>Id</th>
+                        <th>User</th>
+                        <th>Car Name</th>
+                        <th>Travel Time</th>
+                        <th>Amount</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let res of result;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{res.username}}</td>
+                            <td>{{res.carname}}</td>
+                            <td>{{res.trip.startDate | date:'dd/M/yyyy'}} - {{res.trip.endDate | date:'dd/M/yyyy'}}</td>
+                            <td>{{res.trip.amount}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

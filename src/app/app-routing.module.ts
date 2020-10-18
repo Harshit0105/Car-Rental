@@ -5,17 +5,18 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { CostFinderComponent } from './cost-finder/cost-finder.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddCarComponent } from './add-car/add-car.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminComponent } from './admin/admin.component';
 import { CarDetailComponent } from './car-detail/car-detail.component';
+import { AdminCarsComponent } from './admin-cars/admin-cars.component';
+import { AdminCarEditComponent } from './admin-car-edit/admin-car-edit.component';
+import { AdminTripComponent } from './admin-trip/admin-trip.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'cars/:cate', component: CarsComponent },
   { path: 'carDetails', component: CarsComponent },
   { path: 'navigation', component: NavigationComponent },
@@ -25,8 +26,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'adminCars', component: AdminCarsComponent },
+  { path: 'adminTrips', component: AdminTripComponent },
+  { path: 'adminUsers', component: AdminUsersComponent },
+  { path: 'carEdit/:id', component: AdminCarEditComponent },
   { path: 'addCar', component: AddCarComponent },
-  { path: 'approxCost', component: CostFinderComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ]
 
@@ -45,11 +50,13 @@ export const routingComponents = [
   LoginComponent,
   SignupComponent,
   CarsComponent,
-  CostFinderComponent,
   ProfileComponent,
+  AdminUsersComponent,
+  AdminCarsComponent,
   AddCarComponent,
-  SidenavComponent,
   PageNotFoundComponent,
   AdminComponent,
   CarDetailComponent,
+  AdminCarEditComponent,
+  AdminTripComponent,
 ]

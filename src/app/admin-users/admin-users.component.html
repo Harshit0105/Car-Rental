@@ -1,0 +1,28 @@
+<div class="bg-img">
+    <div class="card" style="margin: 50px auto 5px;width: 80rem;" *ngIf="users">
+        <div class="card-body">
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-light table-striped mb-0">
+                    <thead>
+                        <th>Id</th>
+                        <th>User Name</th>
+                        <th>Email Id</th>
+                        <th>Mobile No</th>
+                        <th>Gender</th>
+                        <th>Role</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{user.username}}</td>
+                            <td>{{user.email_id}}</td>
+                            <td>{{user.phoneno}}</td>
+                            <td>{{user.gender}}</td>
+                            <td>{{user.role}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

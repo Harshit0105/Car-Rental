@@ -1,0 +1,22 @@
+<div class="content">
+    <div class="d-flex flex-wrap">
+        <div *ngFor="let car of cars">
+            <a class="card">
+                <img class="card-img-top" src="../../assets/carPic/{{car.bodyPic}}">
+                <div class="card-body">
+                    <h1 class="card-title">{{car.name || bold}}</h1>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-sm" style="margin: 2px;">
+                            <button (click)="delete(car._id)" style="background-color: red;color: white;" class="btn btn-block">Delete</button>
+                        </div>
+                        <div class="col-sm" style="margin: 2px;">
+                            <button routerLink="/carEdit/{{car._id}}" class="btn btn-block" style="background-color: #FF4E14;color: white;">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
